@@ -30,12 +30,29 @@ import pandas
 # print((data.temp[0]*9/5) + 32)
 
 # Create a DataFrame from scratch
-data_dict = {
-    "students": ["Amy", "James", "Angela"],
-    "scores": [76, 56, 65]
-}
-
-data = pandas.DataFrame(data_dict)
+# data_dict = {
+#     "students": ["Amy", "James", "Angela"],
+#     "scores": [76, 56, 65]
+# }
+#
+# data = pandas.DataFrame(data_dict)
 # print(data)
 # Save into a csv file
-data.to_csv("new_data.csv")
+# data.to_csv("new_data.csv")
+# Use csv data to retrieve count of squirrels fur color and count then create a new DataFrame
+data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+gray_color_count = len(data[data["Primary Fur Color"] == "Gray"])
+cinnamon_color_count = len(data[data["Primary Fur Color"] == "Cinnamon"])
+black_color_count = len(data[data["Primary Fur Color"] == "Black"])
+print(gray_color_count)
+print(cinnamon_color_count)
+print(black_color_count)
+
+data_dict = {
+    "Fur Color": ["Gray", "Cinnamon", "Black"],
+    "Count": [gray_color_count, cinnamon_color_count, black_color_count]
+}
+
+squirrel_data = pandas.DataFrame(data_dict)
+print(squirrel_data)
+squirrel_data.to_csv("Squirrel_count.csv")
